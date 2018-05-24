@@ -1,0 +1,14 @@
+<h3>{{title}}</h3>
+<button ng-click="toggleCssClass()">Toggle css class</button>
+<table class="{{cssClass}}">
+	<thead>
+		<tr>
+			<th ng-repeat="(k,v) in data[0]">{{k}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="d in data">
+			<td ng-repeat="(k,v) in d">{{v}}</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,101 @@
+<div class="row">
+
+	<!-- login form -->
+	<div class="col-md-6">
+
+	</div>
+
+
+	<!-- registration form -->
+	<div class="col-md-6">
+		<h3>New users register</h3>
+
+		<form id="f1" name="f1" 
+			class="form-horizontal">
+
+		  <div class="form-group">
+		    <label for="name" 
+		    	class="col-md-3 control-label">Name</label>
+		    <div class="col-md-9">
+		      <input type="text" class="form-control" 
+		      	ng-model="reg.name" 
+		      	required
+		      	ng-minlength="3"
+		      	ng-maxlength="25"
+		      	id="name" name="name"
+		      	placeholder="your fullname">
+
+		      <span class="err" ng-show="f1.name.$dirty && f1.name.$error.required" >Name is mandatory</span>
+		      <span class="err" ng-show="f1.name.$dirty && f1.name.$error.minlength">Minimum 3 letters required</span>
+		      <span class="err" ng-show="f1.name.$dirty && f1.name.$error.maxlength">Maximum 25 letters allowed</span>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="email" 
+		    	class="col-md-3 control-label">Email</label>
+		    <div class="col-md-9">
+		      <input type="email" class="form-control" 
+		      	ng-model="reg.email"
+		      	id="email" name="email" placeholder="Email">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="phone" 
+		    	class="col-md-3 control-label">Phone</label>
+		    <div class="col-md-9">
+		      <input type="text" class="form-control" 
+		      	ng-model="reg.phone"
+		      	id="phone" name="phone" 
+		      	pattern="[7-9][0-9]{9}"
+		      	placeholder="mobile phone">
+
+		      	<span class="err" ng-show="f1.phone.$dirty && f1.phone.$error.required" >Phone is mandatory</span>
+		      	<span class="err" ng-show="f1.phone.$dirty && f1.phone.$error.pattern">Must be 10 digits starting with 7 or 8 or 9</span>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="address" 
+		    	class="col-md-3 control-label">Address</label>
+		    <div class="col-md-9">
+		      <textarea class="form-control" 
+		      	rows="4"
+		      	ng-model="reg.address"
+		      	id="address" name="address" 
+		      	placeholder="delivery address"></textarea>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="password" 
+		    	class="col-md-3 control-label">Password</label>
+		    <div class="col-md-9">
+		      <input type="password" class="form-control" 
+		      	ng-model="reg.password"
+		      	id="password" name="password" 
+		      	placeholder="secret code">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="c_password" 
+		    	class="col-md-3 control-label"></label>
+		    <div class="col-md-9">
+		      <input type="password" class="form-control" 
+		      	ng-model="reg.c_password"
+		      	id="c_password" name="c_password" 
+		      	placeholder="retype the password">
+
+		      <span class="err" ng-show="!checkPasswordsMatch()">Passwords dont match!</span>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <div class="col-md-offset-3 col-md-9">
+		      <button type="submit" 
+		      	ng-click="register()"
+		      	ng-disabled="f1.$invalid"
+		     	class="btn btn-{{f1.$invalid?'danger':'success'}}">Register</button>
+		    </div>
+		  </div>
+		</form>		
+	</div>
+
+</div>

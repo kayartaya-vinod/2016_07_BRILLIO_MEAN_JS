@@ -1,0 +1,66 @@
+<h1 ng-show="!cart.length">Your cart is empty!!</h1>
+
+<div ng-show="cart.length">
+	<p>
+		<a href="" ng-click="emptyCart()">
+			<span class="fa fa-shopping-cart"></span>
+			Empty your cart</a>
+	</p>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th></th>
+				<th>Item</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Amount</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="p in cart">
+				<td>{{$index+1}}</td>
+				<td>
+					<img ng-src="{{p.picture}}" 
+						style="height: 100px;">
+				</td>
+				<td>
+					<h3>{{p.name|uppercase}}</h3>
+					{{p.brand}}<br />
+					{{p.description}}
+				</td>
+				<td>{{p.unit_price}}</td>
+				<td>{{p.quantity}}</td>
+				<td>{{p.unit_price*p.quantity}}</td>
+				<td>
+					<a href="" ng-click="deleteFromCart(p)">
+						<h1>
+						<span class="fa fa-trash-o"></span>
+						</h1>
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		<a href="" ng-click="emptyCart()">
+			<span class="fa fa-shopping-cart"></span>
+			Empty your cart</a>
+	</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

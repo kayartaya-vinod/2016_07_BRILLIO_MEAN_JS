@@ -1,0 +1,80 @@
+<html ng-app="app">
+<head>
+
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
+
+	<script type="text/javascript"
+		src="lib/jquery/jquery.js"></script>
+		
+	<script type="text/javascript"
+		src="lib/bootstrap/js/bootstrap.js"></script>
+
+	<script type="text/javascript"
+		src="lib/angular/angular.js"></script>
+	<script type="text/javascript"
+		src="ex04-directives.js"></script>
+
+	
+	<script type="text/javascript">
+
+	angular.module("app", ["ex04-directives"])
+	.controller("main", 
+		["$scope", ($scope)=>{
+
+		$scope.names = ["Vinod", "John Doe", "Jane Doe"];
+		$scope.cities = ["Bangalore", "Dallas", "Chicago"];
+	}])
+	.directive("appList", [function(){
+		// this function is invoked one time during app init
+		console.log("registering the app-list ..");
+
+		// this function should return an object with some
+		// specific properties
+
+		var d = {};
+
+		d.template = "<ul><li ng-repeat='d in data'>{{d}}</li></ul><hr />";
+		d.restrict = "A" // default us EA; possible values EAC
+		d.scope = {
+			data: "=src",
+			type: "="
+		};
+		return d;
+
+	}]);
+	</script>
+</head>
+<body ng-controller="main">
+	<div class="container">
+	<h1>Angularjs demos</h1>
+	<hr>
+
+	<div app-table 
+		title = "List of contacts"
+		url="'http://vinod.co/rest/contacts.php'"
+		class="table table-striped table-bordered table-hover">
+		blah blah blah 
+	</div>
+	<div app-table url="'http://mybasket.vinod.co/api/products'">
+	</div>
+
+	<div app-list src="names" ></div>
+	<div app-list src="cities" ></div>
+	<div app-list src="['Java', 'C#', 'C++']" ></div>
+	
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

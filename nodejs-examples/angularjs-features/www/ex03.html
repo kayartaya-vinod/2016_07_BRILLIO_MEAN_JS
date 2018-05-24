@@ -1,0 +1,61 @@
+<html ng-app="app">
+<head>
+	<script type="text/javascript"
+		src="lib/jquery/jquery.js"></script>
+	<script type="text/javascript"
+		src="lib/angular/angular.js"></script>
+
+	
+	<script type="text/javascript">
+
+	angular.module("app", [])
+	.controller("main", 
+		["$scope", "$filter", "$interval", 
+		($scope, $filter, $interval)=>{
+
+		$scope.myname = "Vinod";
+		$scope.$watch("myname", (newval, oldval)=>{
+			console.log("myname changed!", newval, oldval );
+		});
+
+		$interval(()=>{
+			var dt = new Date();
+			$scope.currentTime = $filter("date")(dt, "hh:mm:ss");
+		}, 1000);
+
+		// setInterval(()=>{
+		// 	var dt = new Date();
+		// 	$scope.currentTime = $filter("date")(dt, "hh:mm:ss");
+		// 	$scope.$digest();			
+		// }, 1000);
+
+	}])
+	;
+
+	</script>
+</head>
+<body ng-controller="main">
+	<h1>Angularjs demos V2</h1>
+
+	<hr>
+	{{currentTime}}
+
+	<p>
+		<input ng-model="myname">
+	</p>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

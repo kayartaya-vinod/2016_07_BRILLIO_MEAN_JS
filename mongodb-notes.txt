@@ -1,0 +1,208 @@
+db.persons.insert([{
+	firstname: "Vinod",
+	lastname: "Kumar",
+	city: "Bangalore"
+},{
+	firstname: "Shyam",
+	lastname: "Sundar",
+	city: "Bangalore"
+}]);
+
+show dbs
+
+show collections
+
+db.persons.find();
+db.persons.find().pretty();
+db.persons.findOne();
+
+db.persons.insert({
+	_id: 1,
+	name: "Ramesh Kumar",
+	address: {
+		city: "Chennai",
+		state: "Tamilnadu"
+	}
+});
+
+var p1 = {
+	_id: 2,
+	name: "Jhon Doe",
+	address: {
+		city: "Dallas",
+		region: "Texas",
+		country: "USA"
+	}
+};
+
+db.persons.save(p1); // update, or insert
+
+// drop the collection specified
+db.persons.drop();
+
+// drop the current database
+db.dropDatabase();
+
+
+db.salesdata.find({category: "Beverages"});
+
+db.salesdata.find({}, {_id: 0, category: 0, quarter: 0})
+db.salesdata.find({}, {_id: 0, category: 100, quarter: 1})
+
+
+db.salesdata.find({}, 
+{_id: 0, category: 0, quarter: 0
+}).sort({sales: -1}).limit(5)
+
+
+db.salesdata.find({
+	sales: { $gte: 10000, $lte: 20000}
+}).pretty()
+
+db.salesdata.find({
+	$and: [
+		{sales: { $gte: 1500}},
+		{sales: { $lte: 2000}}
+	]
+}).pretty()
+
+db.salesdata.find({
+	sales: { $gte: 1000, $lte: 2000}
+}).count();
+
+db.salesdata.find({
+	sales: { $gte: 5000, $lte: 6000}
+}).count();
+
+db.salesdata.find({
+	$or: [
+	{sales: { $gte: 1000, $lte: 2000}},
+	{sales: { $gte: 5000, $lte: 6000}}
+	]
+}).count();
+
+----------------------------------------------------
+var products = [/CHA/i, "Ikura"];
+
+db.salesdata.find({
+	product: { $in: products}
+}, {_id: 0}).pretty();
+----------------------------------------------------
+
+db.persons.find({
+	address: {$exists: 1}
+}).pretty();
+
+----------------------------------------------------
+var min = 1000;
+var max = 2000;
+
+var condition = "this.sales>=" + min + " && this.sales<=" +max;
+
+db.salesdata.find({
+	$where: condition
+}).pretty();
+----------------------------------------------------
+db.orders.find({
+	"customer.customerId": "ANTON"
+}, {products: 0, customer: 0}).pretty();
+----------------------------------------------------
+db.orders.find({
+	orderDate: {$gt: new Date("1998-01-27")}
+}, {products: 0, customer: 0}).count();
+----------------------------------------------------
+db.orders.find({
+	orderDate: {$gt: new Date("1998-01-27")}
+}, {"customer.customerName": 1, "customer.city": 1}).pretty();
+----------------------------------------------------
+db.orders.find({
+	$where: "this.products.length>=5"
+}).pretty();
+----------------------------------------------------
+
+db.persons.update({email:"vinod@vinod.co"},
+{name: "Vinod Kumar", 
+	website: "http://vinod.co", 
+	email:"vinod@vinod.co"},
+{upsert: 1})
+
+db.persons.update(
+{_id: 2},
+{email: "johndoe@mail.com"})
+
+db.persons.update(
+{_id: 2},
+{
+	$set: {
+		name: "Jhon Doe",
+		addres: {
+			city: "Dallas",
+			region: "Texas",
+			country: "USA"
+		}
+	}
+})
+
+db.persons.update(
+{_id: 2},
+{$set: {website: "www.johndoe.com"}})
+
+
+db.persons.update(
+{_id: ObjectId("579327390101da6694183d20")}, 
+{$unset: {"city": 1}});
+
+
+db.persons.update(
+{ "address.city": {$exists: 1}},
+{ $unset: {"address.city": ""}},
+{multi: true})
+
+
+db.persons.update(
+{city: {$exists: 0}}, 
+{$set: {city: "Mysore"}},
+{multi: true})
+
+
+db.persons.update(
+{city: "Bangalore"},
+{$unset: {city: 1}},
+{multi: 1}
+);
+
+db.salesdata.update({},
+{
+	$inc: {sales: 1}
+},
+{multi: true})
+
+db.salesdata.update({},
+{
+	$mul: {sales: 1.01} // increment by 1%
+},
+{multi: true})
+
+db.salesdata.update({},
+{"$rename": {"sales": "amount", "product": "product-name"}},
+{multi: 1})
+
+
+var p1 = db.salesdata.findOne();
+p1.product-name // error
+p1["product-name"] // no error
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

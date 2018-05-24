@@ -1,0 +1,55 @@
+<html>
+<head>
+	<title>Ex06</title>
+	<script type="text/javascript">
+
+	function wait(cb, delay){
+		if(cb===undefined){
+			throw "Parameter 1 is required, but missing";
+		}
+		if(typeof cb !="function"){
+			throw "Parameter 1 is expected to be a function, but found" + typeof number;
+		}
+		if(delay===undefined){
+			throw "Parameter 2 is required, but missing";
+		}
+		if(typeof delay != "number"){
+			throw "Parameter 2 is expected to be a number, but found" + typeof number;
+		}
+		var ms1 = new Date().getTime();
+		while(true){
+			var ms2 = new Date().getTime();
+			if((ms2-ms1)>=delay){
+				break;
+			}
+		}
+
+		cb();
+	}
+
+	console.log("Main started...");
+
+	setTimeout(function(){
+		console.log("Executing callback from setTimeout after the delay");
+	}, 3000);
+
+	wait(function(){
+		console.log("Executing callback from wati() after the delay");
+	}, 60000);
+	console.log("Main finished!");
+	</script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

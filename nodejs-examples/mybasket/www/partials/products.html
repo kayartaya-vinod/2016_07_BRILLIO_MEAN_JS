@@ -1,0 +1,34 @@
+<div class="row">
+
+	<div class="col-md-3"
+		style="max-height: 410px; min-height: 410px;"
+		ng-repeat="p in products track by $index">
+		<img class="img img-thumbnail" 
+			ng-src="{{p.picture}}"/>
+
+		<p class="lead">{{p.name}}</p>
+		<p>{{p.brand}}
+			<span class="pull-right">
+				<span class="fa fa-rupee"></span>
+				{{p.unit_price}}</span>
+		</p>
+		<p>{{p.description}}</p>
+		<p>{{p.quantity_per_unit}}</p>
+		<div class="input-group">
+			<span class="input-group-addon">QTY</span>
+			<input type="number" 
+			ng-model="p.quantity"
+			class="form-control" 
+			placeholder="Quantity">
+			<span class="input-group-btn">
+        		<button class="btn btn-success" 
+        		ng-click="addToCart(p)"
+        		type="button">Add
+        		</button>
+      		</span>
+		</div>
+
+		<div class="gap"></div>
+	</div>
+
+</div>

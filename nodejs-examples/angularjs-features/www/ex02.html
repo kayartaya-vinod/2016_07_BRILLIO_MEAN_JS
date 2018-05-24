@@ -1,0 +1,55 @@
+<html ng-app="app">
+<head>
+	<script type="text/javascript"
+		src="lib/jquery/jquery.js"></script>
+	<script type="text/javascript"
+		src="lib/angular/angular.js"></script>
+
+	<script type="text/javascript"
+		src="ex01-filters.js"></script>
+
+	<script type="text/javascript">
+
+	angular.module("app", ["ex01-filters"])
+	.controller("main", 
+		["$scope", function($scope){}])
+	;
+
+	</script>
+</head>
+<body ng-controller="main">
+	<h1>Angularjs demos</h1>
+
+	<hr>
+	
+	<p>Age is {{ "1974-01-20" | age }}</p>
+	<p>Age is {{ "1975-08-07" | age }}</p>
+	<p>Age is {{ "1976-11-06" | age }}</p>
+	
+	<hr>
+	
+	<p>Age is {{ "1974-01-20" | age : 1}}</p>
+	<p>Age is {{ "1975-08-07" | age : 1}}</p>
+	<p>Age is {{ "1976-11-06" | age : 1}}</p>
+	
+	<hr>
+	
+	<p>Age is {{ "1974-01-20" | age : 2}}</p>
+	<p>Age is {{ "1975-08-07" | age : 2}}</p>
+	<p>Age is {{ "1976-11-06" | age : 2}}</p>
+	<hr>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

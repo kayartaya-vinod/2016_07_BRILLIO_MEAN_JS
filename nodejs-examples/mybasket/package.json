@@ -1,0 +1,13 @@
+{
+  "name": "mybasket",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "author": "Vinod <vinod@vinod.co>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

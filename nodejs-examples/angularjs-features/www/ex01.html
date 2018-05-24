@@ -1,0 +1,61 @@
+<!-- www/ex01.html -->
+<html ng-app="app">
+<head>
+	<script type="text/javascript"
+		src="lib/jquery/jquery.js"></script>
+	<script type="text/javascript"
+		src="lib/angular/angular.js"></script>
+
+	<script type="text/javascript">
+
+	angular.module("app", [])
+	.controller("main", 
+		["$scope", "$filter", ($scope, $filter)=>{
+
+		$scope.name = "Vinod Kumar";
+		$scope.amount = 12345.6789;
+		$scope.salary = $filter("currency")(5000, "$", 1);
+		$scope.dob = new Date(1974, 0, 20);
+		$scope.today = new Date();
+		$scope.text = "Timezone to be used for formatting. It understands UTC/GMT and the continental US time zone abbreviations, but for general use, use a time zone offset, for example, '+0430' (4 hours, 30 minutes east of the Greenwich meridian) If not specified, the timezone of the browser will be used.";
+
+		$scope.showHideText = function(){
+			$scope.showText = !$scope.showText;
+		};
+	}])
+	;
+
+	</script>
+</head>
+<body ng-controller="main">
+	<h1>Angularjs demos</h1>
+	<p>Name is {{name | uppercase}}</p>
+	<p>Amount is {{amount | currency }}</p>
+	<p>Amount is {{amount | currency : "Rs."}}</p>
+	<p>Salary is {{salary}} </p>
+	<p>Date of birth is {{dob | date: 'dd-MM-yyyy'}}</p>
+	<p>Date of birth is {{dob | date: 'd/M/y'}}</p>
+	<p>Today is {{today | date: 'd/M/y hh:mm:ss'}}</p>
+	<p>Text is {{text | limitTo: 50}}
+		<a href="" ng-click="showHideText()" ng-show="!showText">
+		{{text.length>50?"...":""}}
+		</a>
+		<span ng-show="showText">{{text | limitTo: text.length: 50}}
+			<a href="" ng-click="showHideText()">(show less)</a>
+		</span>
+	</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

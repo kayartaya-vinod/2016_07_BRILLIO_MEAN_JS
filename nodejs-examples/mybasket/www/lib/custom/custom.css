@@ -1,0 +1,43 @@
+body {
+	margin: 50px 50px 0;
+	padding-top: 61px;
+}
+
+.navbar-teal {
+	/*background-color: #4686a5;*/
+	background-color: #455f28;
+	padding-top: 10px;
+}
+
+.navbar-teal a {
+	color: #fff;
+}
+
+.navbar-teal a:hover {
+	color: #4686a5;
+}
+
+div.gap {
+	min-height: 20px;
+}
+
+.text-white {
+	color: #fff;
+}
+
+.err {
+	color: red;
+	font-size: 0.8em;
+	font-style: italic;
+}
+
+
+
+
+
+
+
+
+
+
+
